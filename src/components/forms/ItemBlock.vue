@@ -1,0 +1,71 @@
+<template>
+  <div class="config-block">
+    <label :style="labelStyle">{{title}}</label>
+    <div class="content" :style="contentStyle">
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ItemBlock',
+  props: {
+    labelWidth: {
+      type: Number,
+      default: 80
+    },
+    inline: {
+      type: Boolean,
+      default: true
+    },
+    title: {
+      type: String
+    }
+  },
+  computed: {
+    labelStyle () {
+      return {
+        width: this.labelWidth + 'px',
+        float: this.inline ? 'left' : 'initial'
+      }
+    },
+    contentStyle () {
+      return {
+        marginLeft: this.inline ? (this.labelWidth + 'px') : '0'
+      }
+    }
+  },
+  methods: {
+    touchStart (e) {
+      this.$emit('touch-start', e)
+    },
+
+    touchMove (e) {
+      this.$emit('touch-move', e)
+    }
+  }
+}
+</script>
+
+<style lang="less">
+.config-block {
+  margin-bottom: 5px;
+  height: 40px;
+  label {
+    text-align: right;
+    vertical-align: middle;
+    float: left;
+    font-size: 14px;
+    color: #606266;
+    line-height: 40px;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+  }
+  .content {
+    line-height: 40px;
+    position: relative;
+    font-size: 14px;
+  }
+}
+</style>
