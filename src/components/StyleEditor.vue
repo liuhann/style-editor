@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div class="container">
-
     </div>
     <div class="config-box">
       <prop-config :element="element" fontable></prop-config>
@@ -23,6 +22,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

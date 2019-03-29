@@ -50,7 +50,6 @@ export default {
 
 <style lang="less">
 .config-block {
-  margin-bottom: 5px;
   height: 40px;
   label {
     text-align: right;

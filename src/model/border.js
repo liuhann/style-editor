@@ -3,5 +3,5 @@ export default {
   style: 'solid',
   color: '#fff',
   sides: ['left', 'right', 'top', 'bottom'],
-  radius: [0, 0, 0, 0]
+  radius: 0
 }

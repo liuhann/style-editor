@@ -1,28 +1,19 @@
 <template>
 <div class="edit-position config-group">
   <item-block title="横向对齐">
-    <van-radio-group v-model="position.horizontal">
-      <van-radio name="left">左</van-radio>
-      <van-radio name="center">居中</van-radio>
-      <van-radio name="right">右</van-radio>
-    </van-radio-group>
+    <el-radio v-model="position.horizontal" label="left">左</el-radio>
+    <el-radio v-model="position.horizontal" label="center">居中</el-radio>
+    <el-radio v-model="position.horizontal" label="right">右</el-radio>
   </item-block>
   <edit-len label="横向偏移" v-model="position.offsetX" :min="-1000" :max="1000"></edit-len>
 
   <item-block title="纵向对齐">
-    <van-radio-group v-model="position.vertical">
-      <van-radio name="top">上</van-radio>
-      <van-radio name="center">居中</van-radio>
-      <van-radio name="bottom">下</van-radio>
-    </van-radio-group>
+    <el-radio v-model="position.vertical" label="top">左</el-radio>
+    <el-radio v-model="position.vertical" label="center">居中</el-radio>
+    <el-radio v-model="position.vertical" label="bottom">下</el-radio>
   </item-block>
 
-  <edit-len label="纵向偏移" v-model="position.offsetY" :min="-1000"></edit-len>
-
-  <div class="group">
-    <edit-len label="宽度" v-model="position.width"></edit-len>
-    <edit-len label="高度" v-model="position.height"></edit-len>
-  </div>
+  <edit-len label="纵向偏移" v-model="position.offsetY"></edit-len>
 </div>
 </template>
 
@@ -51,9 +42,6 @@ export default {
   computed: {
     position () {
       return this.value
-    },
-    deviceStyle () {
-
     }
   },
   created () {

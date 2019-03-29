@@ -7,9 +7,6 @@
       </div>
     </van-uploader>
   </item-block>
-  <item-block>
-
-  </item-block>
 </div>
 </template>
 

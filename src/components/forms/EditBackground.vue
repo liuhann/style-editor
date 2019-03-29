@@ -1,72 +1,50 @@
 <template>
 <div class="edit-background section">
-  <van-cell class="group-title" title="背景" icon="expand-o" />
-  <item-block title="模式">
-    <select v-model="background.mode">
-      <option value="1">纯色</option>
-      <option value="2">渐变</option>
-      <option value="0">透明</option>
-    </select>
+  <item-block title="颜色">
+    <el-color-picker v-model="background.colors[0]"></el-color-picker>
   </item-block>
 
-  <item-block title="颜色" v-if="background.mode==='1'">
-    <pop-color-picker v-model="background.color"></pop-color-picker>
+  <item-block title="渐变模式">
+    <el-select v-model="background.angle" size="mini">
+      <el-option value="to bottom" label="上下"></el-option>
+      <el-option value="to right" label="左右"></el-option>
+    </el-select>
   </item-block>
-
-  <item-block title="渐变颜色" v-if="background.mode==='2'">
-    <pop-gradient-picker v-model="background.gradients" :angle="background.angle" ></pop-gradient-picker>
-  </item-block>
-
-  <item-block title="渐变模式" v-if="background.mode==='2'">
-    <select v-model="background.angle">
-      <option value="to bottom">上下</option>
-      <option value="to right">左右</option>
-    </select>
-  </item-block>
-  <edit-image title="图片" :background="true" v-model="background.image"></edit-image>
 
   <item-block title="背景大小">
-    <select v-model="background.size">
-      <option value="auto">原始大小</option>
-      <option value="cover">覆盖</option>
-      <option value="contain">包含</option>
-      <option value="auto 100%">匹配高度</option>
-      <option value="100% auto">匹配宽度</option>
-    </select>
+    <el-select size="mini" v-model="background.size" placeholder="请选择">
+      <el-option
+        v-for="item in backgroundSizeOptions"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value">
+      </el-option>
+    </el-select>
   </item-block>
 
   <item-block title="背景重复">
-    <van-checkbox v-model="background.repeat">是</van-checkbox>
+    <el-checkbox v-model="background.repeat">是</el-checkbox>
   </item-block>
 
   <item-block title="背景位置">
-    <select v-model="background.position">
-      <option value="top left">左上</option>
-      <option value="top center">中上</option>
-      <option value="center left">左中</option>
-      <option value="center center">正中</option>
-      <option value="center right">右中</option>
-      <option value="bottom left">左下</option>
-      <option value="bottom center">中下</option>
-      <option value="bottom right">右下</option>
-    </select>
+    <el-select size="mini" v-model="background.position">
+      <el-option
+        v-for="item in backgroundPositions"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"></el-option>
+    </el-select>
   </item-block>
 
 </div>
 </template>
 
 <script>
-import PopColorPicker from './PopColorPicker'
 import ItemBlock from './ItemBlock'
-import PopGradientPicker from './PopGradientPicker'
-import EditImage from './EditImage'
 export default {
   name: 'EditBackground',
   components: {
-    EditImage,
-    ItemBlock,
-    PopColorPicker,
-    PopGradientPicker
+    ItemBlock
   },
   props: {
     value: {
@@ -81,6 +59,51 @@ export default {
   computed: {
     background () {
       return this.value
+    },
+    backgroundSizeOptions () {
+      return [{
+        value: 'auto',
+        label: '原始大小'
+      }, {
+        value: 'cover',
+        label: '覆盖'
+      }, {
+        value: 'contain',
+        label: '包含'
+      }, {
+        value: 'auto 100%',
+        label: '匹配高度'
+      }, {
+        value: '100% auto',
+        label: '匹配宽度'
+      }]
+    },
+    backgroundPositions () {
+      return [{
+        value: 'top left',
+        label: '左上'
+      }, {
+        value: 'top center',
+        label: '中上'
+      }, {
+        value: 'center left',
+        label: '左中'
+      }, {
+        value: 'center center',
+        label: '正中'
+      }, {
+        value: 'bottom left',
+        label: '左下'
+      }, {
+        value: 'bottom center',
+        label: '中下'
+      }, {
+        value: 'bottom right',
+        label: '右下'
+      }, {
+        value: 'center right',
+        label: '右中'
+      }]
     }
   },
 

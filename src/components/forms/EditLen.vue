@@ -1,11 +1,11 @@
 <template>
 <item-block :title="label" class="item-block" @touch-start="touchStart" @touch-move="touchMove">
   <el-input-number @change="stepChange" size="mini" v-model="length" :step="step || 1"></el-input-number>
-  <select v-model="unit" v-if="withUnit" slot="end">
-    <option value="vw">屏宽</option>
-    <option value="vh">屏高</option>
-    <option value="px">像素</option>
-  </select>
+  <el-select v-model="unit" size="mini" style="width: 75px;margin-left: 5px" v-if="withUnit">
+    <el-option value="vw" label="屏宽"></el-option>
+    <el-option value="vh" label="屏高"></el-option>
+    <el-option value="px" label="像素"></el-option>
+  </el-select>
 </item-block>
 </template>
 
@@ -68,7 +68,7 @@ export default {
 
   methods: {
     setDataFromValue () {
-      if (typeof this.value === 'string' ) {
+      if (typeof this.value === 'string') {
         let lu = this.getLengthUnit(this.value)
         this.length = lu.number
         this.unit = lu.unit
@@ -85,7 +85,7 @@ export default {
       const deltaX = e.touches[0].clientX - this.lastTouchMoveX
 
       if (Math.abs(deltaX) > 5) {
-        this.length = parseInt(this.length) + Math.floor(deltaX/2) * this.step
+        this.length = parseInt(this.length) + Math.floor(deltaX / 2) * this.step
         if (this.max && this.length > this.max) {
           this.length = this.max
         }

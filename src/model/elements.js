@@ -4,6 +4,7 @@ import FONT from './font'
 import CLIPPATH from './clippath'
 import POSITION from './position'
 import TRANSLATE from './translate'
+import SIZE from './size'
 
 const BASE = {
   version: '1.2',
@@ -12,7 +13,8 @@ const BASE = {
   border: BORDER,
   font: FONT,
   clippath: CLIPPATH,
-  translate: TRANSLATE
+  translate: TRANSLATE,
+  size: SIZE
 }
 
 export default BASE

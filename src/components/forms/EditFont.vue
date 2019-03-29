@@ -1,6 +1,5 @@
 <template>
 <div class="edit-font">
-  <div class="group-title">字体</div>
   <edit-len v-model="font.size" label="大小" :with-unit="false"></edit-len>
   <item-block title="颜色">
     <el-color-picker v-model="font.color"></el-color-picker>
