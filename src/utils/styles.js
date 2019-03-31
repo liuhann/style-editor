@@ -34,6 +34,7 @@ function getElementStyle (element, device, animation) {
   const styles = []
   // position and size
   if (element.position && device) {
+    styles.push(`position: absolute`)
     if (element.position.vertical === 'top') {
       styles.push(`top: ${getLength(element.position.offsetY, device)}px`)
     } else if (element.position.vertical === 'center') {
@@ -50,13 +51,14 @@ function getElementStyle (element, device, animation) {
       styles.push(`right: ${getLength(element.position.offsetX, device)}px`)
     }
     if (element.type === 'image') {
-      styles.push(`width: ${getLength(element.position.width, device)}px`)
-      styles.push(`height: ${getLength(element.position.height, device)}px`)
+
     }
     if (element.type === 'text') {
       styles.push(`width: ${getLength(element.position.width, device)}px`)
     }
   }
+  styles.push(`width: ${getLength(element.size.width, device)}px`)
+  styles.push(`height: ${getLength(element.size.height, device)}px`)
 
   if (element.background) {
     styles.push(getBackgroundStyle(element.background, element.position))
@@ -84,7 +86,7 @@ function getElementStyle (element, device, animation) {
         }
       }
     }
-    styles.push(`border-radius: ${element.border.radius[0]}px ${element.border.radius[1]}px ${element.border.radius[2]}px ${element.border.radius[3]}px;`)
+    styles.push(`border-radius: ${element.border.radius}px`)
   }
   // font
   if (element.font) {
@@ -109,19 +111,13 @@ function getGradientStyle (colors, angle, blendImage) {
 
 function getBackgroundStyle (background) {
   const styles = []
-  if (background.mode === '1') { // 颜色与图片混合
-    styles.push(`background-color: ${background.color}`)
-    if (background.image) {
-      styles.push(`background-image: url('${background.image}')`)
-    }
-  } else if (background.mode === '2') { // 颜色和渐变混合
-    styles.push(getGradientStyle(background.gradients, background.angle, background.image))
-  } else if (background.mode === '0') {
-    if (background.image) {
-      styles.push(`background-image: url('${background.image}')`)
-    } else {
-      styles.push(`background: transparent`)
-    }
+  if (background.colors.length > 1) {
+    styles.push(`background-image: linear-gradient(${background.angle}, ${background.colors.join(',')})`)
+  } else if (background.colors.length === 1) {
+    styles.push(`background-color: ${background.colors[0]}`)
+  }
+  if (background.image) {
+    styles.push(`background-image: url('${background.image}')`)
   }
   styles.push(`background-size: ${background.size}`)
   styles.push(`background-position: ${background.position}`)

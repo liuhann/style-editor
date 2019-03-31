@@ -1,7 +1,10 @@
 <template>
 <div class="edit-background section">
   <item-block title="颜色">
-    <el-color-picker v-model="background.colors[0]"></el-color-picker>
+    <span  v-for="(color, index) of background.colors" :key="index">
+      <el-color-picker v-model="background.colors[index]"></el-color-picker>
+    </span>
+    <el-button icon="el-icon-plus" type="text" @click="addColor"></el-button>
   </item-block>
 
   <item-block title="渐变模式">
@@ -117,7 +120,9 @@ export default {
   },
 
   methods: {
-
+	  addColor () {
+	  	this.background.colors.push('')
+    }
   }
 }
 </script>

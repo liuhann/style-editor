@@ -3,8 +3,8 @@
   <item-block title="锁定比例">
     <el-checkbox v-model="value.fix"></el-checkbox>
   </item-block>
-  <edit-len label="宽度" v-model="value.width" @change="changeSize('width')"></edit-len>
-  <edit-len label="高度" v-model="value.height" @change="changeSize('height')"></edit-len>
+  <edit-len label="宽度" v-model="value.width"></edit-len>
+  <edit-len label="高度" v-model="value.height"></edit-len>
 </div>
 </template>
 
@@ -40,7 +40,6 @@ export default {
   methods: {
     changeSize (v) {
       if (this.value.fix) {
-        debugger
         if (v === 'width') {
           this.value.height = this.value.width
         } else {

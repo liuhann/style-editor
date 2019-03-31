@@ -18,7 +18,6 @@
       </el-collapse-item>
       <el-collapse-item title="裁剪" size="mini" name="clip">
         <edit-clip-path v-model="element.clip"></edit-clip-path>
-        <edit-border v-model="element.border"></edit-border>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -82,6 +81,7 @@ export default {
   width: 100px;
 }
 .el-collapse-item__header {
+  padding-left: 10px;
   /*height: 28px;*/
   /*line-height: 28px;*/
 }

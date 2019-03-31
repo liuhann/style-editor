@@ -12,7 +12,7 @@ const BASE = {
   background: BACKGROUND,
   border: BORDER,
   font: FONT,
-  clippath: CLIPPATH,
+  clip: CLIPPATH,
   translate: TRANSLATE,
   size: SIZE
 }

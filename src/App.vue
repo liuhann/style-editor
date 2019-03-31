@@ -12,6 +12,7 @@
 <script>
 import PropConfig from './components/PropConfig'
 import template from './model/elements'
+import styleUtils from './utils/styles'
 export default {
   name: 'StyleEditor',
   components: { PropConfig },
@@ -21,11 +22,14 @@ export default {
         position: 'absolute',
         width: this.device.width + 'px',
         height: this.device.height + 'px',
-        left: (window.innerWidth / 2 - this.device.width / 2) + 'px',
+        left: (window.innerWidth / 2 - 160 - this.device.width / 2) + 'px',
         top: (window.innerHeight / 2 - this.device.height / 2) + 'px',
         'border-radius': '6px',
         'box-shadow': '0 1px 4px rgba(0,0,0,.2), 0 1px 2px rgba(0,0,0,.2)'
       }
+    },
+	  elementStyle () {
+      return styleUtils.getElementStyle(this.element, this.device)
     }
   },
   data () {
@@ -34,7 +38,6 @@ export default {
         width: 375,
         height: 667
       },
-      elementStyle: '',
       element: template
     }
   }
@@ -45,9 +48,11 @@ export default {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   color: #2c3e50;
 }
 .config-box {
+  border-left: 1px solid #efefef;
   position: absolute;
   top: 0;
   overflow-y: auto;
