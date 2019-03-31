@@ -1,5 +1,14 @@
 <template>
 <div class="edit-background section">
+  <item-block title="图片" class="upload">
+    <div class="image-display" :style="imagePreview">
+      <el-upload
+        action="http://www.danke.fun"
+        :before-upload="beforeUpload">
+        <el-button size="small" type="text">选择上传</el-button>
+      </el-upload>
+    </div>
+  </item-block>
   <item-block title="颜色">
     <span  v-for="(color, index) of background.colors" :key="index">
       <el-color-picker v-model="background.colors[index]"></el-color-picker>
@@ -52,10 +61,15 @@ export default {
   props: {
     value: {
       type: Object
+    },
+    maxSize: {
+      type: Number,
+      default: 800000
     }
   },
   data () {
     return {
+      file: null
     }
   },
 
@@ -63,6 +77,15 @@ export default {
     background () {
       return this.value
     },
+
+    imagePreview () {
+      if (this.file) {
+        return `background-image: url('${this.src}')`
+      } else {
+        return ''
+      }
+    },
+
     backgroundSizeOptions () {
       return [{
         value: 'auto',
@@ -120,13 +143,39 @@ export default {
   },
 
   methods: {
-	  addColor () {
-	  	this.background.colors.push('')
+    addColor () {
+      this.background.colors.push('')
+    },
+    beforeUpload (file) {
+      if (file.size > this.maxSize) {
+        return
+      }
+      const blobUrl = URL.createObjectURL(file)
+      this.file = blobUrl
+      this.$emit('input', blobUrl)
+      this.$emit('file-add', file)
+      return false
     }
   }
 }
 </script>
 
-<style>
-
+<style lang="less">
+.edit-background {
+  .image-display {
+    width: 220px;
+    height: 90px;
+    background-color: #efefef;
+  }
+  .upload {
+    height: 100px;
+    .el-upload {
+      display: inherit;
+      text-align: center;
+      cursor: pointer;
+      outline: 0;
+      padding: 25px;
+    }
+  }
+}
 </style>

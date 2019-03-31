@@ -27,7 +27,7 @@
 import EditFont from './forms/EditFont'
 import EditPosition from './forms/EditPosition'
 import Vue from 'vue'
-import { Button, InputNumber, ColorPicker, Radio, Select, Option, Checkbox, Collapse, CollapseItem } from 'element-ui'
+import { Button, InputNumber, ColorPicker, Radio, Select, Option, Checkbox, Collapse, CollapseItem, Upload } from 'element-ui'
 import EditBackground from './forms/EditBackground'
 import EditBorder from './forms/EditBorder'
 import EditClipPath from './forms/EditClipPath'
@@ -42,6 +42,7 @@ Vue.use(Option)
 Vue.use(Checkbox)
 Vue.use(Collapse)
 Vue.use(CollapseItem)
+Vue.use(Upload)
 
 export default {
   name: 'PropConfig',
