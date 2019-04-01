@@ -5,7 +5,7 @@
       <div class="element" :style="elementStyle"></div>
     </div>
     <div class="config-box">
-      <prop-config :element="element" fontable></prop-config>
+      <prop-config :element="element" fontable @file-add="fileAdded" @file-remove="fileRemoved"></prop-config>
     </div>
   </div>
 </template>
@@ -40,6 +40,14 @@ export default {
         height: 667
       },
       element: template
+    }
+  },
+  methods: {
+    fileAdded (file) {
+      console.log(file)
+    },
+    fileRemoved (file) {
+      console.log(file)
     }
   }
 }

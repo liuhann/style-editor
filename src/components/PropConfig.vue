@@ -11,7 +11,7 @@
         <edit-position v-model="element.position"></edit-position>
       </el-collapse-item>
       <el-collapse-item title="背景" size="mini" name="background">
-        <edit-background v-model="element.background"></edit-background>
+        <edit-background v-model="element.background" @file-add="$emit('file-add', $event)" @file-remove="$emit('file-remove', $event)"></edit-background>
       </el-collapse-item>
       <el-collapse-item title="边框" size="mini" name="border">
         <edit-border v-model="element.border"></edit-border>
