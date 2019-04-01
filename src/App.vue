@@ -12,8 +12,32 @@
 
 <script>
 import PropConfig from './components/PropConfig'
-import template from './model/element'
+import template, { simplify } from './model/element'
 import { getElementStyle } from './utils/styles'
+
+
+function clone (obj) {
+  // Handle the 3 simple types, and null or undefined
+  if (obj == null || typeof obj !== 'object') return obj
+  // Handle Array
+  if (obj instanceof Array) {
+    let copy = []
+    for (var i = 0, len = obj.length; i < len; i++) {
+      copy[i] = clone(obj[i])
+    }
+    return copy
+  }
+  // Handle Object
+  if (obj instanceof Object) {
+    let copy = {}
+    for (let attr in obj) {
+      if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr])
+    }
+    return copy
+  }
+  return obj
+}
+
 export default {
   name: 'StyleEditor',
   components: { PropConfig },
@@ -33,7 +57,7 @@ export default {
       return getElementStyle(this.element, this.device)
     },
     pretty () {
-      return JSON.stringify(this.element, null, 2)
+      return JSON.stringify(simplify(this.element, template), null, 2)
     }
   },
   data () {
@@ -42,7 +66,7 @@ export default {
         width: 320,
         height: 540
       },
-      element: template
+      element: clone(template)
     }
   },
   methods: {
