@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    {{element}}
     <div class="container" :style="containerStyle">
       <div class="element" :style="elementStyle"></div>
     </div>
@@ -11,7 +12,7 @@
 
 <script>
 import PropConfig from './components/PropConfig'
-import template from './model/elements'
+import template from './model/element'
 import styleUtils from './utils/styles'
 export default {
   name: 'StyleEditor',
@@ -28,7 +29,7 @@ export default {
         'box-shadow': '0 1px 4px rgba(0,0,0,.2), 0 1px 2px rgba(0,0,0,.2)'
       }
     },
-	  elementStyle () {
+    elementStyle () {
       return styleUtils.getElementStyle(this.element, this.device)
     }
   },

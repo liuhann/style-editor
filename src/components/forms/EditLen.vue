@@ -5,6 +5,8 @@
     <el-option value="vw" label="屏宽"></el-option>
     <el-option value="vh" label="屏高"></el-option>
     <el-option value="px" label="像素"></el-option>
+    <el-option value="%" label="百分比"></el-option>
+    <el-option value="deg" label="度"></el-option>
   </el-select>
 </item-block>
 </template>
@@ -50,7 +52,11 @@ export default {
       }
     },
     unit () {
-      this.$emit('input', this.length + this.unit)
+      if (this.unit) {
+        this.$emit('input', this.length + this.unit)
+      } else {
+        this.$emit('input', this.length)
+      }
       this.$emit('change')
     }
   },
@@ -70,7 +76,7 @@ export default {
     setDataFromValue () {
       if (typeof this.value === 'string') {
         let lu = this.getLengthUnit(this.value)
-        this.length = lu.number
+        this.length = lu.number || 0
         this.unit = lu.unit
       } else {
         this.length = this.value

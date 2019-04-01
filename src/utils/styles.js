@@ -38,7 +38,7 @@ function getElementStyle (element, device, animation) {
     if (element.position.vertical === 'top') {
       styles.push(`top: ${getLength(element.position.offsetY, device)}px`)
     } else if (element.position.vertical === 'center') {
-      styles.push(`top: ${device.height / 2 - getLength(element.position.height, device) / 2 + getLength(element.position.offsetY, device)}px`)
+      styles.push(`top: ${device.height / 2 - getLength(element.size.height, device) / 2 + getLength(element.position.offsetY, device)}px`)
     } else if (element.position.vertical === 'bottom') {
       styles.push(`bottom: ${getLength(element.position.offsetY, device)}px`)
     }
@@ -46,7 +46,7 @@ function getElementStyle (element, device, animation) {
     if (element.position.horizontal === 'left') {
       styles.push(`left: ${getLength(element.position.offsetX, device)}px`)
     } else if (element.position.horizontal === 'center') {
-      styles.push(`left: ${(device.width / 2) - (getLength(element.position.width, device) / 2) + getLength(element.position.offsetX, device)}px`)
+      styles.push(`left: ${(device.width / 2) - (getLength(element.size.width, device) / 2) + getLength(element.position.offsetX, device)}px`)
     } else if (element.position.horizontal === 'right') {
       styles.push(`right: ${getLength(element.position.offsetX, device)}px`)
     }
@@ -54,7 +54,7 @@ function getElementStyle (element, device, animation) {
 
     }
     if (element.type === 'text') {
-      styles.push(`width: ${getLength(element.position.width, device)}px`)
+      styles.push(`width: ${getLength(element.size.width, device)}px`)
     }
   }
   styles.push(`width: ${getLength(element.size.width, device)}px`)

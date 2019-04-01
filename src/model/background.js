@@ -3,7 +3,7 @@ export default {
   angle: 'to bottom',
   size: 'cover',
   position: 'center center',
-  image: '',
+  url: '',
   repeat: false,
   blend: 'multiply'
 }

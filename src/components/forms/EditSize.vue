@@ -1,9 +1,17 @@
 <template>
-<div class="edit-position config-group">
-  <item-block title="锁定比例">
-    <el-checkbox v-model="value.fix"></el-checkbox>
-  </item-block>
+<div class="edit-size">
   <edit-len label="宽度" v-model="value.width"></edit-len>
+  <item-block title="锁定比例">
+    <el-button-group size="mini">
+      <el-button v-for="(relate, index) of relates"
+                 :class="index === relatedIndex ? 'current': ''"
+                 @click="chooseIndex(index)"
+                 size="mini"
+                 :key="index"
+                 :icon="relate.icon"
+                 round>{{relate.value}}</el-button>
+    </el-button-group>
+  </item-block>
   <edit-len label="高度" v-model="value.height"></edit-len>
 </div>
 </template>
@@ -27,17 +35,37 @@ export default {
   },
   data () {
     return {
-      // position: this.value
+      relatedIndex: -1
     }
   },
   watch: {
+    'value.width': function (newVal, oldVal) {
+      if (this.relatedIndex > -1) {
+
+      }
+    }
   },
   computed: {
+    relates () {
+      return [{
+        icon: 'el-icon-sort',
+        value: ''
+      }, {
+        value: '4:3'
+      }, {
+        value: '3:2'
+      }, {
+        value: '2:1'
+      }]
+    }
   },
   created () {
 
   },
   methods: {
+    chooseIndex (index) {
+      this.relatedIndex = index
+    },
     changeSize (v) {
       if (this.value.fix) {
         if (v === 'width') {
@@ -52,9 +80,12 @@ export default {
 </script>
 
 <style lang="less">
-.position-preview {
-  width: 80vw;
-  height: 80vw;
+.edit-size {
+  .el-button-group {
+    .current {
+      background: #333;
+      color: #fff;
+    }
+  }
 }
-
 </style>

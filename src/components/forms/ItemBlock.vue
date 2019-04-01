@@ -13,7 +13,7 @@ export default {
   props: {
     labelWidth: {
       type: Number,
-      default: 70
+      default: 80
     },
     inline: {
       type: Boolean,

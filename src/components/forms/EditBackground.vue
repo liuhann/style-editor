@@ -1,13 +1,7 @@
 <template>
 <div class="edit-background section">
   <item-block title="图片" class="upload">
-    <div class="image-display" :style="imagePreview">
-      <el-upload
-        action="http://www.danke.fun"
-        :before-upload="beforeUpload">
-        <el-button size="small" type="text">选择上传</el-button>
-      </el-upload>
-    </div>
+    <edit-image :image-url="background.url" @file-add="addFile" @file-remove="removeFile"></edit-image>
   </item-block>
   <item-block title="颜色">
     <span  v-for="(color, index) of background.colors" :key="index">
@@ -53,9 +47,11 @@
 
 <script>
 import ItemBlock from './ItemBlock'
+import EditImage from './EditImage'
 export default {
   name: 'EditBackground',
   components: {
+    EditImage,
     ItemBlock
   },
   props: {
@@ -71,6 +67,10 @@ export default {
     return {
       file: null
     }
+  },
+
+  created () {
+
   },
 
   computed: {
@@ -146,15 +146,12 @@ export default {
     addColor () {
       this.background.colors.push('')
     },
-    beforeUpload (file) {
-      if (file.size > this.maxSize) {
-        return
-      }
-      const blobUrl = URL.createObjectURL(file)
-      this.file = blobUrl
-      this.$emit('input', blobUrl)
-      this.$emit('file-add', file)
-      return false
+
+    addFile (file) {
+      this.$emit('add-file', file)
+    },
+    removeFile (file) {
+      this.$emit('remove-file', file)
     }
   }
 }

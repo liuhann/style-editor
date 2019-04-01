@@ -9,7 +9,7 @@
     </item-block>
 
     <div class="clip-polygon">
-      <item-block :title="`点${(index+1)}`" v-for="(point, index) of clip.points" :key="index">
+      <item-block :title="`点${(index+1)}`" v-for="(point, index) of clip.points" :key="index" :label-width="60">
         <el-input-number size="mini" v-model="point[0]" :precision="2" :step="0.05" :max="10" :style="{marginRight: '5px'}"></el-input-number>
         <el-input-number size="mini" v-model="point[1]" :precision="2" :step="0.05" :max="10" :style="{marginRight: '5px'}"></el-input-number>
         <el-button type="text" icon="el-icon-delete" @click="removePoint(index)"></el-button>
@@ -59,12 +59,12 @@ export default {
       }
     },
 
-	  removePoint (index) {
+    removePoint (index) {
       this.clip.points.splice(index, 1)
     },
 
-	  addPoint () {
-    	this.clip.points.push([0.5, 0.5])
+    addPoint () {
+      this.clip.points.push([0.5, 0.5])
     }
   }
 }

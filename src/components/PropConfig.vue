@@ -19,6 +19,9 @@
       <el-collapse-item title="裁剪" size="mini" name="clip">
         <edit-clip-path v-model="element.clip"></edit-clip-path>
       </el-collapse-item>
+      <el-collapse-item title="转换" size="mini" name="transform">
+        <edit-transform :transform="element.transform"></edit-transform>
+      </el-collapse-item>
     </el-collapse>
   </div>
 </template>
@@ -27,13 +30,15 @@
 import EditFont from './forms/EditFont'
 import EditPosition from './forms/EditPosition'
 import Vue from 'vue'
-import { Button, InputNumber, ColorPicker, Radio, Select, Option, Checkbox, Collapse, CollapseItem, Upload } from 'element-ui'
+import { Button, ButtonGroup, InputNumber, ColorPicker, Radio, Select, Option, Checkbox, Collapse, CollapseItem, Upload } from 'element-ui'
 import EditBackground from './forms/EditBackground'
 import EditBorder from './forms/EditBorder'
 import EditClipPath from './forms/EditClipPath'
 import EditSize from './forms/EditSize'
+import EditTransform from './forms/EditTransform'
 
 Vue.use(Button)
+Vue.use(ButtonGroup)
 Vue.use(InputNumber)
 Vue.use(ColorPicker)
 Vue.use(Radio)
@@ -56,6 +61,7 @@ export default {
     }
   },
   components: {
+    EditTransform,
     EditSize,
     EditClipPath,
     EditBorder,

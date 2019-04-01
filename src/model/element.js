@@ -3,7 +3,7 @@ import BORDER from './border'
 import FONT from './font'
 import CLIPPATH from './clippath'
 import POSITION from './position'
-import TRANSLATE from './translate'
+import TRANSFORM from './transform'
 import SIZE from './size'
 
 const BASE = {
@@ -13,7 +13,7 @@ const BASE = {
   border: BORDER,
   font: FONT,
   clip: CLIPPATH,
-  translate: TRANSLATE,
+  transform: TRANSFORM,
   size: SIZE
 }
 

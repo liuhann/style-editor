@@ -1,62 +1,66 @@
 <template>
-<div class="edit-image">
-  <item-block :title="title">
-    <van-uploader :after-read="onRead">
-      <div class="image-display" :style="displayStyle">
-        {{src? '': '点击选择图片'}}
-      </div>
-    </van-uploader>
-  </item-block>
+<div class="edit-image" :style="displayStyle">
+  <el-upload
+    action="http://www.danke.fun"
+    :before-upload="beforeUpload">
+    <el-button v-if="!src" size="small" type="text">选择上传</el-button>
+  </el-upload>
+  <i v-if="src" class="el-icon-delete" @click="removeSrc"></i>
 </div>
 </template>
 
 <script>
-import ItemBlock from './ItemBlock'
 export default {
   name: 'EditImage',
-  components: {ItemBlock},
   props: {
-    title: {
-      type: String,
-      default: '编辑图片'
-    },
-    value: {
+    imageUrl: {
       type: String
     }
   },
   data () {
     return {
-      src: this.value
+      src: this.imageUrl
     }
   },
 
   watch: {
-    'value': function() {
-      this.src = this.value
+    'imageUrl': function () {
+      this.src = this.imageUrl
     }
   },
   computed: {
     displayStyle () {
       if (this.src) {
-        return `background-image: url('${this.src}')`
+        return {
+          backgroundImage: `url('${this.src}')`
+        }
       } else {
-        return ''
+        return {}
       }
     }
   },
   methods: {
-    onRead ({content, file}) {
-      if (file.size > this.ctx.upload.maxSize) {
-        this.ctx.vant.Notify('图片不能大于2M')
+    beforeUpload (file) {
+      if (file.size > this.maxSize) {
         return
       }
       const blobUrl = URL.createObjectURL(file)
-      this.src = blobUrl
-      this.$emit('input', blobUrl)
 
-      this.ctx.workdao.uploadImage(file).then((result)=> {
-        this.$emit('input', result.url)
-      })
+      var img = new Image()
+      img.onload = () => {
+        this.src = blobUrl
+        file.height = img.height
+        file.width = img.width
+        this.$emit('file-add', file)
+        this.file = file
+      }
+      img.src = blobUrl
+      return false
+    },
+
+    removeSrc () {
+      this.src = ''
+      this.$emit('file-remove', this.file)
     }
   }
 }
@@ -64,16 +68,22 @@ export default {
 
 <style lang="less">
 .edit-image {
-  .image-display {
-    width: 30vw;
-    height: 20vw;
-    background-color: #ebedf0;
-    background-size: cover;
-    margin: 5px;
-    text-align: center;
-    line-height: 20vw;
-    align-items: center;
-    color: #666;
+  position: relative;
+  background-position: center;
+  background-color: #efefef;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 220px;
+  height: 90px;
+
+  .el-icon-delete {
+    position: absolute;
+    background: rgba(0,0,0,.8);
+    color: #fff;
+    padding: 10px;
+    right: 0;
+    top: 0;
+    cursor: pointer;
   }
 }
 
