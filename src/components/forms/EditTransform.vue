@@ -16,8 +16,24 @@ export default {
   name: 'EditTransform',
   components: { EditLen },
   props: {
-    transform: {
+    value: {
       type: Object
+    }
+  },
+  data () {
+    return {
+      transform: this.value
+    }
+  },
+  watch: {
+    value () {
+      this.transform = this.value
+    },
+    transform: {
+      deep: true,
+      handler: function () {
+        this.$emit('input', this.transform)
+      }
     }
   },
   computed: {

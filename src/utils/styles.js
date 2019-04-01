@@ -98,6 +98,8 @@ function getElementStyle (element, device, animation) {
     styles.push(`text-decoration: ${element.font.decoration}px`)
     styles.push(`padding: ${getLength(element.font.padding, device)}px`)
   }
+
+  styles.push(getTransformStyle(element.transform))
   return styles.join(';')
 }
 
@@ -116,8 +118,8 @@ function getBackgroundStyle (background) {
   } else if (background.colors.length === 1) {
     styles.push(`background-color: ${background.colors[0]}`)
   }
-  if (background.image) {
-    styles.push(`background-image: url('${background.image}')`)
+  if (background.url) {
+    styles.push(`background-image: url('${background.url}')`)
   }
   styles.push(`background-size: ${background.size}`)
   styles.push(`background-position: ${background.position}`)
@@ -130,6 +132,23 @@ function getBackgroundStyle (background) {
   return styles.join(';')
 }
 
+function getTransformStyle (transform) {
+  const styles = []
+  if (transform) {
+    if (transform.translate) {
+      styles.push(`translate3d(${transform.translate[0]}, ${transform.translate[1]}, ${transform.translate[2]})`)
+    }
+    if (transform.rotate) {
+      styles.push(`rotateX(${transform.rotate[0]})`)
+      styles.push(`rotateY(${transform.rotate[1]})`)
+      styles.push(`rotateZ(${transform.rotate[2]})`)
+    }
+  }
+  if (transform.scale) {
+    styles.push(`scale(${transform.scale})`)
+  }
+  return `transform: ${styles.join(' ')}`
+}
 function getWorkStyle (work, device) {
   return getBackgroundStyle(work.background)
 }

@@ -13,19 +13,19 @@
 export default {
   name: 'EditImage',
   props: {
-    imageUrl: {
+    value: {
       type: String
     }
   },
   data () {
     return {
-      src: this.imageUrl
+      src: this.value
     }
   },
 
   watch: {
-    'imageUrl': function () {
-      this.src = this.imageUrl
+    'value': function () {
+      this.src = this.value
     }
   },
   computed: {
@@ -55,11 +55,13 @@ export default {
         this.file = file
       }
       img.src = blobUrl
+      this.$emit('input', blobUrl)
       return false
     },
 
     removeSrc () {
       this.src = ''
+      this.$emit('input', '')
       this.$emit('file-remove', this.file)
     }
   }

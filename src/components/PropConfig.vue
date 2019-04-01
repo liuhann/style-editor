@@ -20,7 +20,7 @@
         <edit-clip-path v-model="element.clip"></edit-clip-path>
       </el-collapse-item>
       <el-collapse-item title="转换" size="mini" name="transform">
-        <edit-transform :transform="element.transform"></edit-transform>
+        <edit-transform v-model="element.transform"></edit-transform>
       </el-collapse-item>
     </el-collapse>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    {{element}}
+    <pre>{{ pretty }}</pre>
     <div class="container" :style="containerStyle">
       <div class="element" :style="elementStyle"></div>
     </div>
@@ -31,13 +31,16 @@ export default {
     },
     elementStyle () {
       return getElementStyle(this.element, this.device)
+    },
+    pretty () {
+      return JSON.stringify(this.element, null, 2)
     }
   },
   data () {
     return {
       device: {
-        width: 375,
-        height: 667
+        width: 320,
+        height: 540
       },
       element: template
     }
