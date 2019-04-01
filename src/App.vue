@@ -1,11 +1,19 @@
 <template>
   <div id="app">
-    <pre>{{ pretty }}</pre>
-    <div class="container" :style="containerStyle">
-      <div class="element" :style="elementStyle"></div>
+    <div class="header">
     </div>
-    <div class="config-box">
-      <prop-config :element="element" fontable @file-add="fileAdded" @file-remove="fileRemoved"></prop-config>
+    <div class="frames">
+      <div class="code">
+        <pre>{{ pretty }}</pre>
+      </div>
+      <div class="preview">
+        <div class="device" :style="containerStyle">
+          <div class="element" :style="elementStyle"></div>
+        </div>
+      </div>
+      <div class="config-box">
+        <prop-config :element="element" fontable @file-add="fileAdded" @file-remove="fileRemoved"></prop-config>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +22,6 @@
 import PropConfig from './components/PropConfig'
 import template, { simplify } from './model/element'
 import { getElementStyle } from './utils/styles'
-
 
 function clone (obj) {
   // Handle the 3 simple types, and null or undefined
@@ -44,13 +51,8 @@ export default {
   computed: {
     containerStyle () {
       return {
-        position: 'absolute',
         width: this.device.width + 'px',
-        height: this.device.height + 'px',
-        left: (window.innerWidth / 2 - 160 - this.device.width / 2) + 'px',
-        top: (window.innerHeight / 2 - this.device.height / 2) + 'px',
-        'border-radius': '6px',
-        'box-shadow': '0 1px 4px rgba(0,0,0,.2), 0 1px 2px rgba(0,0,0,.2)'
+        height: this.device.height + 'px'
       }
     },
     elementStyle () {
@@ -81,19 +83,61 @@ export default {
 </script>
 
 <style lang="less">
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   color: #2c3e50;
+
+  height: 100%;
+  .header {
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1);
+    height: 32px;
+  }
+  .frames {
+    height: calc(100% - 32px);
+    display: flex;
+  }
+  .code {
+    width: 320px;
+    //border-right: 1px solid #0ae;
+  }
+  .preview {
+    flex: 1;
+    background-color: #FAFAFA;
+    .device {
+      position: relative;
+      background: #fff;
+      margin: 20px auto;
+      border: 1px solid #d6d9dc;
+      border-radius: 3px;
+      box-shadow: 0 2px 8px rgba(59,64,69,0.1);
+    }
+  }
+  .config-box {
+    // box-shadow: 0 2px 8px rgba(59,64,69,0.1);
+    overflow-y: auto;
+    width: 320px;
+  }
 }
-.config-box {
-  border-left: 1px solid #efefef;
-  position: absolute;
-  top: 0;
-  overflow-y: auto;
-  right: 0;
-  bottom: 0;
-  width: 320px;
+.config-box::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+.config-box::-webkit-scrollbar-thumb {
+  background-color: #0ae;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
+}
+.config-box::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
 }
 </style>
