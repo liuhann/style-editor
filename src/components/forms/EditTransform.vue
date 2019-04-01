@@ -1,12 +1,12 @@
 <template>
 <div class="edit-transform">
-  <edit-len label="移动X" v-model="transform.translate[0]"></edit-len>
-  <edit-len label="移动Y" v-model="transform.translate[1]"></edit-len>
-  <edit-len label="移动Z" v-model="transform.translate[2]"></edit-len>
+  <edit-len label="移动X" v-model="transform.translate[0]" :units="translateUnit"></edit-len>
+  <edit-len label="移动Y" v-model="transform.translate[1]" :units="translateUnit"></edit-len>
+  <edit-len label="移动Z" v-model="transform.translate[2]" :units="translateUnit"></edit-len>
   <edit-len label="缩放" v-model="transform.scale" :with-unit="false"></edit-len>
-  <edit-len label="旋转X" v-model="transform.rotate[0]"></edit-len>
-  <edit-len label="旋转Y" v-model="transform.rotate[1]"></edit-len>
-  <edit-len label="旋转Z" v-model="transform.rotate[2]"></edit-len>
+  <edit-len label="旋转X" v-model="transform.rotate[0]" :units="rotateUnit"></edit-len>
+  <edit-len label="旋转Y" v-model="transform.rotate[1]" :units="rotateUnit"></edit-len>
+  <edit-len label="旋转Z" v-model="transform.rotate[2]" :units="rotateUnit"></edit-len>
 </div>
 </template>
 
@@ -18,6 +18,23 @@ export default {
   props: {
     transform: {
       type: Object
+    }
+  },
+  computed: {
+    translateUnit () {
+      return [{
+        value: '%',
+        label: '百分比'
+      }, {
+        value: 'px',
+        label: '像素'
+      }]
+    },
+    rotateUnit () {
+      return [{
+        value: 'deg',
+        label: '度'
+      }]
     }
   }
 }

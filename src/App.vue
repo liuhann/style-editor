@@ -13,7 +13,7 @@
 <script>
 import PropConfig from './components/PropConfig'
 import template from './model/element'
-import styleUtils from './utils/styles'
+import { getElementStyle } from './utils/styles'
 export default {
   name: 'StyleEditor',
   components: { PropConfig },
@@ -30,7 +30,7 @@ export default {
       }
     },
     elementStyle () {
-      return styleUtils.getElementStyle(this.element, this.device)
+      return getElementStyle(this.element, this.device)
     }
   },
   data () {

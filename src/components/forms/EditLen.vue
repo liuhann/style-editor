@@ -2,11 +2,7 @@
 <item-block :title="label" class="item-block" @touch-start="touchStart" @touch-move="touchMove">
   <el-input-number @change="stepChange" size="mini" v-model="length" :step="step || 1"></el-input-number>
   <el-select v-model="unit" size="mini" style="width: 75px;margin-left: 5px" v-if="withUnit">
-    <el-option value="vw" label="屏宽"></el-option>
-    <el-option value="vh" label="屏高"></el-option>
-    <el-option value="px" label="像素"></el-option>
-    <el-option value="%" label="百分比"></el-option>
-    <el-option value="deg" label="度"></el-option>
+    <el-option v-for="u of units" :key="u.value" :value="u.value" :label="u.label"></el-option>
   </el-select>
 </item-block>
 </template>
@@ -22,6 +18,21 @@ export default {
     },
     value: {
       type: [String, Number]
+    },
+    units: {
+      type: Array,
+      default () {
+        return [{
+          value: 'vw',
+          label: '屏宽'
+        }, {
+          value: 'vh',
+          label: '屏高'
+        }, {
+          value: 'px',
+          label: '像素'
+        }]
+      }
     },
     withUnit: {
       type: Boolean,
@@ -103,7 +114,7 @@ export default {
     },
 
     stepChange () {
-      // this.$emit('change')
+      this.$emit('step-change')
     },
     getLengthUnit (len) {
       // -15vw ->  [-15vw,-15,vw]

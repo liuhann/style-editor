@@ -1,6 +1,6 @@
 <template>
 <div class="edit-size">
-  <edit-len label="宽度" v-model="value.width"></edit-len>
+  <edit-len label="宽度" v-model="value.width" :min="1" @step-change="widthChanged"></edit-len>
   <item-block title="锁定比例">
     <el-button-group size="mini">
       <el-button v-for="(relate, index) of relates"
@@ -12,13 +12,14 @@
                  round>{{relate.value}}</el-button>
     </el-button-group>
   </item-block>
-  <edit-len label="高度" v-model="value.height"></edit-len>
+  <edit-len label="高度" v-model="value.height" :min="1" @step-change="heightChanged"></edit-len>
 </div>
 </template>
 
 <script>
 import EditLen from './EditLen'
 import ItemBlock from './ItemBlock'
+import { getLenSplits } from '../../utils/styles'
 export default {
   name: 'EditSize',
   components: {
@@ -35,14 +36,8 @@ export default {
   },
   data () {
     return {
-      relatedIndex: -1
-    }
-  },
-  watch: {
-    'value.width': function (newVal, oldVal) {
-      if (this.relatedIndex > -1) {
-
-      }
+      relatedIndex: -1,
+      customRatio: 1
     }
   },
   computed: {
@@ -51,11 +46,14 @@ export default {
         icon: 'el-icon-sort',
         value: ''
       }, {
-        value: '4:3'
+        value: '4:3',
+        ratio: 4 / 3
       }, {
-        value: '3:2'
+        value: '3:2',
+        ratio: 3 / 2
       }, {
-        value: '2:1'
+        value: '2:1',
+        ratio: 2 / 1
       }]
     }
   },
@@ -63,15 +61,31 @@ export default {
 
   },
   methods: {
-    chooseIndex (index) {
-      this.relatedIndex = index
+    widthChanged () {
+      if (this.relatedIndex > -1) {
+        this.value.height = Math.round(getLenSplits(this.value.width).len / this.customRatio) + getLenSplits(this.value.height).unit
+      }
     },
-    changeSize (v) {
-      if (this.value.fix) {
-        if (v === 'width') {
-          this.value.height = this.value.width
+
+    heightChanged () {
+      if (this.relatedIndex > -1) {
+        this.value.width = Math.round(getLenSplits(this.value.height).len * this.customRatio) + getLenSplits(this.value.width).unit
+      }
+    },
+
+    chooseIndex (index) {
+      if (this.relatedIndex === index) {
+        this.relatedIndex = -1
+        this.customRatio = 1
+      } else {
+        this.relatedIndex = index
+        const relate = this.relates[this.relatedIndex]
+        // 计算新的比例
+        if (relate.ratio) {
+          this.customRatio = relate.ratio
+          this.widthChanged()
         } else {
-          this.value.width = this.value.height
+          this.customRatio = getLenSplits(this.value.width).len / getLenSplits(this.value.height).len
         }
       }
     }
