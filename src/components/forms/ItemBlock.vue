@@ -13,7 +13,7 @@ export default {
   props: {
     labelWidth: {
       type: Number,
-      default: 80
+      default: 70
     },
     inline: {
       type: Boolean,
@@ -51,15 +51,16 @@ export default {
 <style lang="less">
 .config-block {
   height: 40px;
+  clear: both;
   label {
     text-align: right;
     vertical-align: middle;
     float: left;
-    font-size: 14px;
-    color: #606266;
+    font-size: 12px;
     line-height: 40px;
     padding: 0 12px 0 0;
     box-sizing: border-box;
+    color: #7e7e7e;
   }
   .content {
     line-height: 40px;

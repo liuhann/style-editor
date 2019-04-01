@@ -1,5 +1,5 @@
 export default {
-  colors: [''],
+  colors: ['#fafafa'],
   angle: 'to bottom',
   size: 'cover',
   position: 'center center',

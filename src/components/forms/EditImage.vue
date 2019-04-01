@@ -75,7 +75,7 @@ export default {
   background-color: #efefef;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 220px;
+  width: 200px;
   height: 90px;
 
   .el-icon-delete {

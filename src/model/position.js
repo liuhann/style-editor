@@ -1,7 +1,7 @@
 export default {
   type: 'absolute',
-  horizontal: 'left',
-  vertical: 'top',
-  offsetX: '5vw',
-  offsetY: '3vh'
+  horizontal: 'center',
+  vertical: 'center',
+  offsetX: '0vw',
+  offsetY: '0vw'
 }

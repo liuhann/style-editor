@@ -1,18 +1,29 @@
 <template>
   <div id="app">
     <div class="header">
+      <div class="form-control">
+        <select v-model="deviceName">
+          <option v-for="device in devices" :key="device.device" :value="device.device" :label="device.device">{{device.device}}</option>
+        </select>
+        <input v-model="device.width">
+        x
+        <input v-model="device.height">
+        <select v-model="zoom">
+          <option value="0.25">25%</option>
+          <option value="0.5">50%</option>
+          <option value="0.75">75%</option>
+          <option value="1">100%</option>
+        </select>
+      </div>
     </div>
     <div class="frames">
-      <div class="code">
-        <pre>{{ pretty }}</pre>
+      <div class="config-box">
+        <prop-config :element="element" fontable @file-add="fileAdded" @file-remove="fileRemoved"></prop-config>
       </div>
       <div class="preview">
         <div class="device" :style="containerStyle">
           <div class="element" :style="elementStyle"></div>
         </div>
-      </div>
-      <div class="config-box">
-        <prop-config :element="element" fontable @file-add="fileAdded" @file-remove="fileRemoved"></prop-config>
       </div>
     </div>
   </div>
@@ -22,6 +33,7 @@
 import PropConfig from './components/PropConfig'
 import template, { simplify } from './model/element'
 import { getElementStyle } from './utils/styles'
+import { devices } from './devices'
 
 function clone (obj) {
   // Handle the 3 simple types, and null or undefined
@@ -64,11 +76,24 @@ export default {
   },
   data () {
     return {
+      zoom: 1,
+      deviceName: 'Galaxy S9+',
       device: {
         width: 320,
         height: 540
       },
+      devices: devices,
       element: clone(template)
+    }
+  },
+  watch: {
+    deviceName () {
+      for (let device of this.devices) {
+        if (device.device === this.deviceName) {
+          this.device.width = device.vp[0]
+          this.device.height = device.vp[1]
+        }
+      }
     }
   },
   methods: {
@@ -97,13 +122,35 @@ html, body {
 
   height: 100%;
   .header {
-    background: #fff;
-    box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1);
-    height: 32px;
+    background: #3e3e3e;
+    height: 42px;
+    line-height: 42px;
+    color: #fff;
+    label {
+      font: 12px/1.2 'HelveticaNeue-Light','HelveticaNeue',Helvetica,'Roboto-Thin',Arial,sans-serif-light;
+      color: #7e7e7e;
+      margin: 0 0 2px;
+      letter-spacing: .04em;
+    }
+    select {
+      background-color: #3e3e3e;
+      color: #fafafa;
+      border-color: #3e3e3e;
+      font-family: 'TeXGyreAdventorBold';
+      padding: 0 10px;
+    }
+    input {
+      background-color: #3e3e3e;
+      border: 1px solid #6f6f6f;
+      color: #fff;
+      padding: 4px;
+      width: 32px;
+    }
   }
   .frames {
-    height: calc(100% - 32px);
+    height: calc(100% - 42px);
     display: flex;
+    background-color: #FAFAFA;
   }
   .code {
     width: 320px;
@@ -112,6 +159,7 @@ html, body {
   .preview {
     flex: 1;
     background-color: #FAFAFA;
+    overflow: auto;
     .device {
       position: relative;
       background: #fff;
@@ -122,21 +170,21 @@ html, body {
     }
   }
   .config-box {
-    // box-shadow: 0 2px 8px rgba(59,64,69,0.1);
     overflow-y: auto;
-    width: 320px;
+    width: 300px;
+    padding: 10px;
   }
 }
-.config-box::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 6px;
   background-color: #F5F5F5;
 }
 
-.config-box::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #0ae;
   background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
 }
-.config-box::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   background-color: #F5F5F5;
 }

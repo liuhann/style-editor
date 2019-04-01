@@ -1,7 +1,7 @@
 export default {
-  width: 0,
+  width: 1,
   style: 'solid',
-  color: '#fff',
+  color: '#fafafa',
   sides: ['left', 'right', 'top', 'bottom'],
   radius: 0
 }

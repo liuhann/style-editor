@@ -89,8 +89,12 @@ export default {
 }
 .el-collapse-item__header {
   padding-left: 10px;
-  /*height: 28px;*/
-  /*line-height: 28px;*/
+  font-size: 13px;
+  text-align: left;
+  color: #585858;
+  font-weight: bold;
+  height: 36px;
+  line-height: 36px;
 }
 .el-collapse-item__content {
   padding-bottom: 5px;

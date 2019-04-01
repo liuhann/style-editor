@@ -1,5 +1,5 @@
 export default {
   fix: false,
-  width: '90vw',
-  height: '90vh'
+  width: '75vw',
+  height: '75vw'
 }
