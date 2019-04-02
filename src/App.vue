@@ -5,9 +5,9 @@
         <select v-model="deviceName">
           <option v-for="device in devices" :key="device.device" :value="device.device" :label="device.device">{{device.device}}</option>
         </select>
-        <input v-model="device.width">
+        <input v-model="device.width" type="number">
         x
-        <input v-model="device.height">
+        <input v-model="device.height" type="number">
         <select v-model="zoom">
           <option value="0.25">25%</option>
           <option value="0.5">50%</option>
@@ -113,6 +113,8 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
 #app {
   -webkit-font-smoothing: antialiased;
@@ -144,7 +146,7 @@ html, body {
       border: 1px solid #6f6f6f;
       color: #fff;
       padding: 4px;
-      width: 32px;
+      width: 48px;
     }
   }
   .frames {

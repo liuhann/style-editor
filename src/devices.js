@@ -13,6 +13,12 @@ const devices = [{
 }, {
   device: 'MacBook',
   vp: [1440, 900]
+}, {
+  device: 'Camera Ratio 3x2',
+  vp: [600, 400]
+}, {
+  device: 'Splash slide 16x9',
+  vp: [960, 540]
 }]
 
 export {

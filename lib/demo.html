@@ -1,0 +1,19 @@
+<meta charset="utf-8">
+<title>prop-config demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="./prop-config.umd.js"></script>
+
+<link rel="stylesheet" href="./prop-config.css">
+
+
+<div id="app">
+  <demo></demo>
+</div>
+
+<script>
+new Vue({
+  components: {
+    demo: prop-config
+  }
+}).$mount('#app')
+</script>

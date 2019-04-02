@@ -4,6 +4,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "release": "vue-cli-service build --target lib src/components/PropConfig.vue --name prop-config",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
