@@ -1,6 +1,6 @@
 <template>
   <div class="config-block">
-    <label :style="labelStyle">{{title}}</label>
+    <label :style="labelStyle">{{title||label}}</label>
     <div class="content" :style="contentStyle">
       <slot></slot>
     </div>
@@ -20,6 +20,9 @@ export default {
       default: true
     },
     title: {
+      type: String
+    },
+    label: {
       type: String
     }
   },

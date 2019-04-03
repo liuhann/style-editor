@@ -18,7 +18,7 @@
     </div>
     <div class="frames">
       <div class="config-box">
-        <prop-config :element="element" fontable @file-add="fileAdded" @file-remove="fileRemoved"></prop-config>
+        <prop-config :element="element" :animations="animations" fontable @file-add="fileAdded" @file-remove="fileRemoved"></prop-config>
       </div>
       <div class="preview">
         <div class="device" :style="containerStyle">
@@ -33,7 +33,7 @@
 import PropConfig from './components/PropConfig'
 import template, { simplify } from './model/element'
 import { getElementStyle } from './utils/styles'
-import { devices } from './devices'
+import { devices, animations } from './build-in'
 
 function clone (obj) {
   // Handle the 3 simple types, and null or undefined
@@ -83,6 +83,7 @@ export default {
         height: 540
       },
       devices: devices,
+      animations: animations,
       element: clone(template)
     }
   },

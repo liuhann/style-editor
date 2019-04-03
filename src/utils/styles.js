@@ -61,7 +61,7 @@ function getElementStyle (element, device, animation) {
   styles.push(`height: ${getLength(element.size.height, device)}px`)
 
   if (element.background) {
-    styles.push(getBackgroundStyle(element.background, element.position))
+    styles.push(getBackgroundStyle(element.background, element.url))
   }
 
   if (element.clip) {
@@ -111,15 +111,19 @@ function getGradientStyle (colors, angle, blendImage) {
   return style
 }
 
-function getBackgroundStyle (background) {
+function getBackgroundStyle (background, url) {
   const styles = []
+  const backgroundImages = []
+  if (url) {
+    backgroundImages.push(`url('${url}')`)
+  }
   if (background.colors.length > 1) {
-    styles.push(`background-image: linear-gradient(${background.angle}, ${background.colors.join(',')})`)
+    backgroundImages.push(`linear-gradient(${background.angle}, ${background.colors.join(',')})`)
   } else if (background.colors.length === 1) {
     styles.push(`background-color: ${background.colors[0]}`)
   }
-  if (background.url) {
-    styles.push(`background-image: url('${background.url}')`)
+  if (backgroundImages.length) {
+    styles.push(`background-image: ${backgroundImages.join(' ')}`)
   }
   styles.push(`background-size: ${background.size}`)
   styles.push(`background-position: ${background.position}`)

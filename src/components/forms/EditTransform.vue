@@ -4,6 +4,7 @@
   <edit-len label="移动Y" v-model="transform.translate[1]" :units="translateUnit"></edit-len>
   <edit-len label="移动Z" v-model="transform.translate[2]" :units="translateUnit"></edit-len>
   <edit-len label="缩放" v-model="transform.scale" :with-unit="false"></edit-len>
+  <edit-len label="透明度" v-model="transform.opacity" :with-unit="false" :step="0.05"></edit-len>
   <edit-len label="旋转X" v-model="transform.rotate[0]" :units="rotateUnit"></edit-len>
   <edit-len label="旋转Y" v-model="transform.rotate[1]" :units="rotateUnit"></edit-len>
   <edit-len label="旋转Z" v-model="transform.rotate[2]" :units="rotateUnit"></edit-len>

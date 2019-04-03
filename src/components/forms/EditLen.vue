@@ -4,6 +4,7 @@
   <el-select v-model="unit" size="mini" style="width: 75px;margin-left: 5px" v-if="withUnit">
     <el-option v-for="u of units" :key="u.value" :value="u.value" :label="u.label"></el-option>
   </el-select>
+  <slot></slot>
 </item-block>
 </template>
 

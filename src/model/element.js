@@ -5,16 +5,24 @@ import CLIPPATH from './clippath'
 import POSITION from './position'
 import TRANSFORM from './transform'
 import SIZE from './size'
+import ANIMATION from './animation'
 
 const BASE = {
   version: '1.2',
+  name: '元素',
+  text: '',
+  desc: '',
+  url: '',
   position: POSITION,
   background: BACKGROUND,
   border: BORDER,
   font: FONT,
   clip: CLIPPATH,
   transform: TRANSFORM,
-  size: SIZE
+  size: SIZE,
+  in: ANIMATION,
+  dura: ANIMATION,
+  out: ANIMATION
 }
 
 function simplify (element, template) {
