@@ -51,7 +51,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .config-block {
   height: 40px;
   clear: both;

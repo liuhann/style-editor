@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .edit-clip-path {
   .van-stepper {
     float: left;
