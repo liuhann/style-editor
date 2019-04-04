@@ -14,7 +14,7 @@
         <el-input-number size="mini" v-model="point[1]" :precision="2" :step="0.05" :max="10" :style="{marginRight: '5px'}"></el-input-number>
         <el-button type="text" icon="el-icon-delete" @click="removePoint(index)"></el-button>
       </item-block>
-      <el-button icon="el-icon-plus" type="text" @click="addPoint">增加</el-button>
+      <el-button icon="el-icon-plus" type="text" v-if="clip.type !== 'none'" @click="addPoint">增加</el-button>
     </div>
   </div>
 </template>
