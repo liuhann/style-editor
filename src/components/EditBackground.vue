@@ -157,7 +157,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .edit-background {
   .image-display {
     width: 220px;

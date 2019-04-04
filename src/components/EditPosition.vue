@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .position-preview {
   width: 80vw;
   height: 80vw;

@@ -93,7 +93,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .edit-size {
   .el-button-group {
     .current {

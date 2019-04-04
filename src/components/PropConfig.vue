@@ -104,7 +104,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .el-radio {
   margin-right: 2px;
 }

@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .edit-text {
   .edit {
     padding: 10px 15px;
