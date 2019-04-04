@@ -19,7 +19,7 @@
 <script>
 import EditLen from './EditLen'
 import ItemBlock from './ItemBlock'
-import { getLenSplits } from '../../utils/styles'
+import { getLenSplits } from '../utils/styles'
 export default {
   name: 'EditSize',
   components: {

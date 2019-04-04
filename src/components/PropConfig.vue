@@ -47,17 +47,17 @@
 
 <script>
 import Vue from 'vue'
-import EditFont from './forms/EditFont'
-import EditPosition from './forms/EditPosition'
+import EditFont from './EditFont'
+import EditPosition from './EditPosition'
 import { Button, ButtonGroup, InputNumber, ColorPicker, Radio, Select, Option, Checkbox, Collapse, CollapseItem, Upload, Input, Tabs, TabPane } from 'element-ui'
-import EditBackground from './forms/EditBackground'
-import EditImage from './forms/EditImage'
-import EditBorder from './forms/EditBorder'
-import EditClipPath from './forms/EditClipPath'
-import EditSize from './forms/EditSize'
-import EditTransform from './forms/EditTransform'
-import ItemBlock from './forms/ItemBlock'
-import EditAnimation from './forms/EditAnimation'
+import EditBackground from './EditBackground'
+import EditImage from './EditImage'
+import EditBorder from './EditBorder'
+import EditClipPath from './EditClipPath'
+import EditSize from './EditSize'
+import EditTransform from './EditTransform'
+import ItemBlock from './ItemBlock'
+import EditAnimation from './EditAnimation'
 
 Vue.use(Button)
 Vue.use(ButtonGroup)

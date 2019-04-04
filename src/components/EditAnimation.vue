@@ -33,7 +33,7 @@
 <script>
 import EditLen from './EditLen'
 import ItemBlock from './ItemBlock'
-import cubicBeziers from '../../model/cubic-beziers'
+import cubicBeziers from '../model/cubic-beziers'
 export default {
   name: 'EditAnimation',
   components: {

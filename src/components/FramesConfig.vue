@@ -31,10 +31,10 @@
 <script>
 import Vue from 'vue'
 import { Button, ButtonGroup, InputNumber, Table, TableColumn } from 'element-ui'
-import EditTransform from './forms/EditTransform'
-import EditClipPath from './forms/EditClipPath'
+import EditTransform from './EditTransform'
+import EditClipPath from './EditClipPath'
 import FRAME from '../model/frame'
-import ItemBlock from './forms/ItemBlock'
+import ItemBlock from './ItemBlock'
 Vue.use(Button)
 Vue.use(ButtonGroup)
 Vue.use(InputNumber)
