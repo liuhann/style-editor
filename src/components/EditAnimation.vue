@@ -2,7 +2,7 @@
 <div class="edit-animation-option">
   {{label}}
   <item-block label="动画">
-    <el-select size="mini" v-model="animation.name" placeholder="请选择">
+    <el-select size="mini" v-model="animation.name" placeholder="请选择" clearable>
       <el-option
         v-for="(value, index) in animations"
         :key="index"

@@ -109,7 +109,11 @@ function getElementStyle (element, device, animation) {
 
   if (element.transform) {
     styles.push(getTransformStyle(element.transform))
+    if (element.transform.opacity) {
+      styles.push(`opacity: ${element.transform.opacity}`)
+    }
   }
+
   return styles.join(';')
 }
 
@@ -162,9 +166,6 @@ function getTransformStyle (transform) {
   }
   if (transform.scale) {
     styles.push(`scale(${transform.scale})`)
-  }
-  if (transform.opacity != null) {
-    styles.push(`opacity: ${transform.opacity}`)
   }
   return `transform: ${styles.join(' ')}`
 }
