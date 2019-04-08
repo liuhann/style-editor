@@ -3,7 +3,6 @@ import BORDER from './border'
 import FONT from './font'
 import CLIPPATH from './clippath'
 import POSITION from './position'
-import TRANSFORM from './transform'
 import SIZE from './size'
 import ANIMATION from './animation'
 
@@ -18,7 +17,6 @@ const BASE = {
   border: BORDER,
   font: FONT,
   clip: CLIPPATH,
-  transform: TRANSFORM,
   size: SIZE,
   in: ANIMATION,
   dura: ANIMATION,

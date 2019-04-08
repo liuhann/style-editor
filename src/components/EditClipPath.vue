@@ -10,8 +10,8 @@
 
     <div class="clip-polygon">
       <item-block :title="`点${(index+1)}`" v-for="(point, index) of clip.points" :key="index" :label-width="60">
-        <el-input-number size="mini" v-model="point[0]" :precision="2" :step="0.05" :max="10" :style="{marginRight: '5px'}"></el-input-number>
-        <el-input-number size="mini" v-model="point[1]" :precision="2" :step="0.05" :max="10" :style="{marginRight: '5px'}"></el-input-number>
+        <el-input-number size="mini" v-model="point[0]" :style="{marginRight: '5px'}"></el-input-number>
+        <el-input-number size="mini" v-model="point[1]" :style="{marginRight: '5px'}"></el-input-number>
         <el-button type="text" icon="el-icon-delete" @click="removePoint(index)"></el-button>
       </item-block>
       <el-button icon="el-icon-plus" type="text" v-if="clip.type !== 'none'" @click="addPoint">增加</el-button>
@@ -50,10 +50,10 @@ export default {
   methods: {
     clipTypeChange () {
       if (this.clip.type === 'polygon') {
-        this.$set(this.clip, 'points', [[0, 0], [1, 0], [1, 1], [0, 1]])
+        this.$set(this.clip, 'points', [[0, 0], [100, 0], [100, 100], [0, 100]])
         // this.clip.points =
       } else if (this.clip.type === 'ellipse') {
-        this.$set(this.clip, 'points', [[0.5, 0.5], [0.5, 0.5]])
+        this.$set(this.clip, 'points', [[50, 50], [50, 50]])
       } else {
         this.$set(this.clip, 'points', [])
       }
@@ -64,7 +64,7 @@ export default {
     },
 
     addPoint () {
-      this.clip.points.push([0.5, 0.5])
+      this.clip.points.push([50, 50])
     }
   }
 }

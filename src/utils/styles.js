@@ -68,18 +68,23 @@ function getElementStyle (element, device, animation) {
   }
 
   if (element.clip) {
+    const points = []
+    for (let point of element.clip.points) {
+      points.push(`${point[0]}% ${point[1]}%`)
+    }
     if (element.clip.type === 'polygon') {
-      styles.push(`clip-path: polygon(${element.clip.points[0]}% ${element.clip.points[1]}%, ${element.clip.points[2]}% ${element.clip.points[3]}%, ${element.clip.points[4]}% ${element.clip.points[5]}%, ${element.clip.points[6]}% ${element.clip.points[7]}%)`)
+      styles.push(`clip-path: polygon(${points.join(',')})`)
     } else if (element.clip.type === 'circle') {
       styles.push(`clip-path: circle(${element.clip.points[0]}% at ${element.clip.points[1]}% ${element.clip.points[2]}%)`)
     } else if (element.clip.type === 'ellipse') {
-      styles.push(`clip-path: ellipse(${element.clip.points[0]}% ${element.clip.points[1]}% at ${element.clip.points[2]}% ${element.clip.points[3]}%)`)
+      if (points.length === 2) {
+        styles.push(`clip-path: ellipse(${points[0]} at ${points[1]})`)
+      }
     }
   }
   // border
   if (element.border) {
     if (parseInt(element.border.width) === 0) {
-      styles.push(`border: none`)
     } else {
       if (element.border.sides.length === 4) {
         styles.push(`border: ${element.border.width}px ${element.border.style} ${element.border.color}`)
@@ -130,14 +135,16 @@ function getBackgroundStyle (background, url) {
   if (backgroundImages.length) {
     styles.push(`background-image: ${backgroundImages.join(' ')}`)
   }
-  styles.push(`background-size: ${background.size}`)
-  styles.push(`background-position: ${background.position}`)
-  if (background.repeat) {
-    styles.push(`background-repeat: repeat`)
-  } else {
-    styles.push(`background-repeat: no-repeat`)
+  if (url) {
+    styles.push(`background-size: ${background.size}`)
+    styles.push(`background-position: ${background.position}`)
+    if (background.repeat) {
+      styles.push(`background-repeat: repeat`)
+    } else {
+      styles.push(`background-repeat: no-repeat`)
+    }
+    styles.push(`background-blend-mode: ${background.blend}`)
   }
-  styles.push(`background-blend-mode: ${background.blend}`)
   return styles.join(';')
 }
 
@@ -155,6 +162,9 @@ function getTransformStyle (transform) {
   }
   if (transform.scale) {
     styles.push(`scale(${transform.scale})`)
+  }
+  if (transform.opacity != null) {
+    styles.push(`opacity: ${transform.opacity}`)
   }
   return `transform: ${styles.join(' ')}`
 }

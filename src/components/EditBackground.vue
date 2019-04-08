@@ -1,8 +1,5 @@
 <template>
 <div class="edit-background section">
-  <item-block title="图片" class="upload">
-    <edit-image v-model="background.url" @file-add="$emit('file-add', $event)" @file-remove="$emit('file-remove', $event)"></edit-image>
-  </item-block>
   <item-block title="颜色">
     <span  v-for="(color, index) of background.colors" :key="index">
       <el-color-picker v-model="background.colors[index]"></el-color-picker>

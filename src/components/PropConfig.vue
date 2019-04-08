@@ -38,9 +38,6 @@
       <el-collapse-item title="裁剪" size="mini" name="clip">
         <edit-clip-path v-model="element.clip"></edit-clip-path>
       </el-collapse-item>
-      <el-collapse-item title="转换" size="mini" name="transform">
-        <edit-transform v-model="element.transform"></edit-transform>
-      </el-collapse-item>
     </el-collapse>
   </div>
 </template>
@@ -112,6 +109,22 @@ export default {
 .config-basic {
   .el-input__inner, .el-textarea__inner {
     width: 200px;
+  }
+}
+
+.el-input--mini {
+  .el-input__inner {
+    padding: 0 5px;
+  }
+  .el-textarea__inner {
+    padding: 5px;
+  }
+}
+
+.el-select  {
+  .el-input__inner {
+    padding-left: 5px;
+    padding-right: 25px;
   }
 }
 

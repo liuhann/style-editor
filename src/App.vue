@@ -22,7 +22,7 @@
       </div>
       <div class="preview">
         <div class="device" :style="containerStyle">
-          <div class="element" :style="elementStyle"></div>
+          <div class="element" :style="elementStyle">{{element.text}}</div>
         </div>
       </div>
     </div>

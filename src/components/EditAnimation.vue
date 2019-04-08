@@ -6,8 +6,8 @@
       <el-option
         v-for="(value, index) in animations"
         :key="index"
-        :label="value"
-        :value="value">
+        :label="value.name"
+        :value="value.name">
       </el-option>
     </el-select>
   </item-block>

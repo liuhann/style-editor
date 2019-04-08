@@ -8,7 +8,7 @@
   <edit-len label="横向偏移" v-model="position.offsetX" :min="-1000" :max="1000"></edit-len>
 
   <item-block title="纵向对齐">
-    <el-radio v-model="position.vertical" label="top">左</el-radio>
+    <el-radio v-model="position.vertical" label="top">上</el-radio>
     <el-radio v-model="position.vertical" label="center">居中</el-radio>
     <el-radio v-model="position.vertical" label="bottom">下</el-radio>
   </item-block>
